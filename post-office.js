@@ -92,7 +92,7 @@ app.post('/postage', async function (req, res) {
 })
 
 // Start the server.
-app.listen(3000, async () => {
+const server = app.listen(3000, async () => {
   const rootSeed = await bchjs.Mnemonic.toSeed(config.mnemonic)
   const hdNode = bchjs.HDNode.fromSeed(rootSeed)
   const cashAddress = bchjs.HDNode.toCashAddress(hdNode)
@@ -121,3 +121,5 @@ app.listen(3000, async () => {
   console.log('Post Office listening on port 3000!')
   generateStamps()
 })
+
+module.exports = server
